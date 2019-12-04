@@ -339,6 +339,13 @@ impl ImageSpec {
         Ok(self.channels_by_name(&["A"])?.start)
     }
 
+    /// Sets the index of the alpha channel (conventionally named "A")
+    pub fn set_alpha_channel(&mut self, channel: i32) {
+        unsafe {
+            sys::OIIO_ImageSpec_set_alpha_channel(&mut self.0, channel)
+        }
+    }
+
     /// Calculates coordinate ranges from the specified bounds.
     ///
     /// Example:
